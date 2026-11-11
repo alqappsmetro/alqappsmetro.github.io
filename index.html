@@ -50,7 +50,7 @@
   .visual{position:relative;display:flex;justify-content:center}
   .phone{width:262px;border-radius:46px;background:#05070f;padding:11px;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.09);transform:rotate(3deg)}
   .phone .scr{border-radius:36px;overflow:hidden;display:block}
-  .phone img{width:100%;display:block}
+  .phone img{width:100%;height:auto;display:block}
   .chipfloat{position:absolute;background:rgba(18,24,48,.88);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);color:#eef0fa;border-radius:16px;padding:10px 14px;font-size:.8rem;font-weight:600;box-shadow:0 18px 36px rgba(0,0,0,.4);max-width:210px;line-height:1.4}
   .chipfloat b{color:#fff;display:block;font-size:.86rem}
   .chipfloat.one{top:52px;left:-6px}
@@ -63,7 +63,7 @@
   .sub{color:var(--muted);text-align:center;max-width:600px;margin:0 auto 46px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
   .app{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:26px;display:grid;grid-template-columns:1fr 92px;gap:18px;box-shadow:0 6px 24px rgba(13,18,38,.05)}
-  .app .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .app .ahead{display:flex;align-items:center;gap:14px;margin-bottom:12px}
   .app .ic{width:54px;height:54px;border-radius:14px;border:1px solid var(--line);flex:none}
   .app h3{font-size:1.06rem;line-height:1.3}
   .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-top:4px}
@@ -71,7 +71,7 @@
   .playbtn{display:inline-flex;align-items:center;min-height:46px;padding:10px 20px;background:var(--dark);color:#fff;font-weight:700;font-size:.9rem;text-decoration:none;border-radius:999px}
   .playbtn:hover{background:var(--dark2)}
   .app .shot{align-self:start}
-  .app .shot img{width:92px;border-radius:14px;border:1px solid var(--line);display:block;box-shadow:0 10px 22px rgba(13,18,38,.12)}
+  .app .shot img{width:92px;height:auto;border-radius:14px;border:1px solid var(--line);display:block;box-shadow:0 10px 22px rgba(13,18,38,.12)}
   .t-cb{color:#c2437b;background:#fbe7f0}.t-sp{color:#1f63c8;background:#e2edfd}
   .t-bk{color:#c05a1a;background:#fdeee0}.t-kb{color:#14714a;background:#e0f3e9}
   .t-js{color:#4c3fd1;background:#e9e6fd}
@@ -165,7 +165,7 @@
 
       <div class="app rv">
         <div>
-          <div class="top">
+          <div class="ahead">
             <img class="ic" src="https://play-lh.googleusercontent.com/NQ4rHoVl7gPcQVybDjTxHzEJlqiT7VKUH-ApjtppMcZCjD1kggQxoGiwYBvSguPfeBJYlvh5yuYyMx6mOZ4ogA=s0-br30" alt="Ikon Catatan Bayi" width="120" height="120" loading="lazy">
             <div><h3>Catatan Bayi: ASI, Tidur &amp; KMS</h3><span class="tag t-cb">Ibu &amp; Bayi</span></div>
           </div>
@@ -177,7 +177,7 @@
 
       <div class="app rv">
         <div>
-          <div class="top">
+          <div class="ahead">
             <img class="ic" src="https://play-lh.googleusercontent.com/xXujS14T1CBIvLEtiJeJBg1iUpQVD9hXpyh6ZFz6tMiz46f-PcRcY1y-tw5l3sBz1JpECMqharsd8ceIbUSGsw=s0-br30" alt="Ikon Scan PDF" width="120" height="120" loading="lazy">
             <div><h3>Scan PDF Tanpa Watermark</h3><span class="tag t-sp">Dokumen</span></div>
           </div>
@@ -189,7 +189,7 @@
 
       <div class="app rv">
         <div>
-          <div class="top">
+          <div class="ahead">
             <img class="ic" src="https://play-lh.googleusercontent.com/04wVi5YHN2lB1ZSNu1UD_dZ2ej66392yuDlAWlxwnf5utV-Y9aRS8qsjcb0rj1FtzlS5J0TvLIgxOnfwdslR=s0-br30" alt="Ikon BuktiKerja" width="120" height="120" loading="lazy">
             <div><h3>BuktiKerja — Kamera Timestamp</h3><span class="tag t-bk">Kerja Lapangan</span></div>
           </div>
@@ -201,7 +201,7 @@
 
       <div class="app rv">
         <div>
-          <div class="top">
+          <div class="ahead">
             <img class="ic" src="https://play-lh.googleusercontent.com/koNgFc034VBR2XOop_c4tisRM_Im7NsoYY3jRJJghv5QK4tKWtMGRZhn56QSq6ZLyl8grcaAkqI7brVY6gaahXw=s0-br30" alt="Ikon CatatBon" width="120" height="120" loading="lazy">
             <div><h3>CatatBon — Buku Kasbon Warung</h3><span class="tag t-kb">Warung &amp; UMKM</span></div>
           </div>
@@ -213,7 +213,7 @@
 
       <div class="app rv">
         <div>
-          <div class="top">
+          <div class="ahead">
             <img class="ic" src="https://play-lh.googleusercontent.com/G_7av12xlPEwSgaT6CU5oPuo4ThH21GsHugpDxWu2R9whtP29QSlfQVfMtP8t5V7I20GNcJLtbGPl06MCBBqNw=s0-br30" alt="Ikon Jadwal Sholat" width="120" height="120" loading="lazy">
             <div><h3>Jadwal Sholat, Adzan &amp; Kiblat</h3><span class="tag t-js">Ibadah</span></div>
           </div>
