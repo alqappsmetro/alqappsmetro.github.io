@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALQ Studio — Aplikasi Android Ringan untuk Keseharian</title>
+<meta name="description" content="ALQ Studio membuat aplikasi Android yang ringan dan bermanfaat untuk keseharian: catatan bayi, scan dokumen, buku kas warung, kamera bukti kerja, dan jadwal sholat.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2a43'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='%23f5a623' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2a43; --navy2:#16406b; --amber:#f5a623; --amber2:#ffbe45;
+    --ink:#1c2733; --muted:#5b6b7c; --bg:#f6f8fb; --card:#ffffff; --line:#e4ebf2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  /* Header */
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.15rem;color:var(--navy)}
+  .brand .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:1.25rem;font-weight:800}
+  .navlinks{display:flex;gap:26px;font-weight:600;font-size:.95rem;color:var(--muted)}
+  .navlinks a:hover{color:var(--navy)}
+  /* Hero */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1d5a8a 100%);color:#fff;padding:84px 0 76px;text-align:center}
+  .hero .badge{display:inline-block;background:rgba(245,166,35,.16);color:var(--amber2);border:1px solid rgba(245,166,35,.45);padding:5px 14px;border-radius:999px;font-size:.83rem;font-weight:700;letter-spacing:.04em;margin-bottom:20px}
+  .hero h1{font-size:2.6rem;line-height:1.18;font-weight:800;max-width:760px;margin:0 auto 16px}
+  .hero h1 span{color:var(--amber)}
+  .hero p{max-width:640px;margin:0 auto 30px;color:#cfdfef;font-size:1.08rem}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.98rem;transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-amber{background:var(--amber);color:#231a04;box-shadow:0 8px 20px rgba(245,166,35,.35)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35)}
+  .stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:46px}
+  .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 22px;min-width:150px}
+  .stat b{display:block;font-size:1.35rem;color:#fff}
+  .stat small{color:#a9c2da;font-size:.82rem}
+  /* Sections */
+  section{padding:70px 0}
+  .kicker{color:var(--amber);font-weight:800;letter-spacing:.12em;font-size:.8rem;text-transform:uppercase;text-align:center}
+  h2{font-size:1.9rem;font-weight:800;color:var(--navy);text-align:center;margin:8px 0 10px}
+  .sub{color:var(--muted);text-align:center;max-width:620px;margin:0 auto 42px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  .app{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .15s ease,box-shadow .15s ease}
+  .app:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,42,67,.10)}
+  .app .top{display:flex;align-items:center;gap:15px}
+  .app img{width:62px;height:62px;border-radius:15px;border:1px solid var(--line)}
+  .app .ph{width:62px;height:62px;border-radius:15px;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex:none}
+  .app h3{font-size:1.08rem;line-height:1.3;color:var(--navy)}
+  .chip{display:inline-block;background:#fdf1da;color:#9a6a07;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:4px}
+  .chip.soon{background:#e8eef5;color:#47617c}
+  .app p{color:var(--muted);font-size:.94rem;flex:1}
+  .playbtn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:10px;align-self:flex-start}
+  .playbtn:hover{background:var(--navy2)}
+  .soonbtn{display:inline-flex;align-items:center;gap:8px;background:#eef3f8;color:#7d92a9;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:10px;align-self:flex-start}
+  /* Values */
+  .values{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+  .val{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--bg)}
+  .val .ic{font-size:1.6rem;margin-bottom:8px}
+  .val h3{color:var(--navy);font-size:1.05rem;margin-bottom:6px}
+  .val p{color:var(--muted);font-size:.92rem}
+  .about p{max-width:720px;margin:0 auto;text-align:center;color:var(--muted)}
+  .about p b{color:var(--navy)}
+  /* Footer */
+  footer{background:var(--navy);color:#c7d7e8;padding:52px 0 34px}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-bottom:36px}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:12px}
+  footer a{display:block;color:#a9c2da;font-size:.92rem;padding:3px 0}
+  footer a:hover{color:var(--amber2)}
+  footer p{font-size:.92rem;color:#a9c2da}
+  .copy{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;text-align:center;font-size:.85rem;color:#8fa9c4}
+  @media (max-width:640px){ .hero h1{font-size:2rem} .navlinks{display:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><span class="logo">A</span> ALQ Studio</a>
+    <nav class="navlinks">
+      <a href="#aplikasi">Aplikasi</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">PENGEMBANG APLIKASI ANDROID · INDONESIA</span>
+    <h1>Aplikasi ringan untuk <span>kebutuhan sehari-hari</span></h1>
+    <p>ALQ Studio membuat aplikasi Android yang sederhana, cepat, dan menghormati privasi penggunanya — untuk ibu &amp; bayi, warung, pekerja lapangan, dan urusan dokumen.</p>
+    <div class="cta">
+      <a class="btn btn-amber" href="#aplikasi">Lihat Aplikasi Kami</a>
+      <a class="btn btn-ghost" href="https://play.google.com/store/apps/dev?id=9023446037560777549" target="_blank" rel="noopener">Halaman Google Play</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>4</b><small>aplikasi terbit di Google Play</small></div>
+      <div class="stat"><b>100%</b><small>gratis diunduh</small></div>
+      <div class="stat"><b>Offline-first</b><small>data utama tersimpan di perangkat</small></div>
+    </div>
+  </div>
+</div>
+
+<section id="aplikasi">
+  <div class="wrap">
+    <div class="kicker">Aplikasi Kami</div>
+    <h2>Dibuat untuk masalah sehari-hari</h2>
+    <p class="sub">Setiap aplikasi kami lahir dari kebutuhan nyata di sekitar kami — lalu dibuat seringan dan semudah mungkin.</p>
+    <div class="grid">
+
+      <div class="app">
+        <div class="top">
+          <img src="https://play-lh.googleusercontent.com/NQ4rHoVl7gPcQVybDjTxHzEJlqiT7VKUH-ApjtppMcZCjD1kggQxoGiwYBvSguPfeBJYlvh5yuYyMx6mOZ4ogA=s0-br30" alt="Ikon Catatan Bayi">
+          <div><h3>Catatan Bayi: ASI, Tidur &amp; KMS</h3><span class="chip">Ibu &amp; Bayi</span></div>
+        </div>
+        <p>Pencatat ASI, popok, dan tidur bayi cukup dalam dua ketukan — lengkap dengan grafik tumbuh kembang KMS (WHO), pengingat imunisasi IDAI, dan mode malam untuk begadang yang tenang.</p>
+        <a class="playbtn" href="https://play.google.com/store/apps/details?id=id.alqstudio.catatanbayi" target="_blank" rel="noopener">▶ Google Play</a>
+      </div>
+
+      <div class="app">
+        <div class="top">
+          <img src="https://play-lh.googleusercontent.com/xXujS14T1CBIvLEtiJeJBg1iUpQVD9hXpyh6ZFz6tMiz46f-PcRcY1y-tw5l3sBz1JpECMqharsd8ceIbUSGsw=s0-br30" alt="Ikon Scan PDF">
+          <div><h3>Scan PDF Tanpa Watermark</h3><span class="chip">Dokumen</span></div>
+        </div>
+        <p>Pindai dokumen menjadi PDF yang bersih — tanpa watermark dan tanpa batas jumlah halaman. Dilengkapi OCR Bahasa Indonesia &amp; Inggris yang berjalan langsung di perangkat.</p>
+        <a class="playbtn" href="https://play.google.com/store/apps/details?id=id.alqstudio.scanpdf" target="_blank" rel="noopener">▶ Google Play</a>
+      </div>
+
+      <div class="app">
+        <div class="top">
+          <img src="https://play-lh.googleusercontent.com/04wVi5YHN2lB1ZSNu1UD_dZ2ej66392yuDlAWlxwnf5utV-Y9aRS8qsjcb0rj1FtzlS5J0TvLIgxOnfwdslR=s0-br30" alt="Ikon BuktiKerja">
+          <div><h3>BuktiKerja — Kamera Timestamp</h3><span class="chip">Kerja Lapangan</span></div>
+        </div>
+        <p>Kamera bukti kerja dengan cap waktu, tanggal, dan lokasi GPS yang tercetak langsung pada foto. Bukti lapangan yang rapi dan meyakinkan untuk laporan harian.</p>
+        <a class="playbtn" href="https://play.google.com/store/apps/details?id=id.buktikerja.app" target="_blank" rel="noopener">▶ Google Play</a>
+      </div>
+
+      <div class="app">
+        <div class="top">
+          <img src="https://play-lh.googleusercontent.com/koNgFc034VBR2XOop_c4tisRM_Im7NsoYY3jRJJghv5QK4tKWtMGRZhn56QSq6ZLyl8grcaAkqI7brVY6gaahXw=s0-br30" alt="Ikon CatatBon">
+          <div><h3>CatatBon — Buku Kasbon Warung</h3><span class="chip">Warung &amp; UMKM</span></div>
+        </div>
+        <p>Buku kasbon digital untuk warung dan toko kecil: catat utang pelanggan, cicilan, dan jatuh temponya dengan rapi — pengganti buku tulis yang tidak akan hilang.</p>
+        <a class="playbtn" href="https://play.google.com/store/apps/details?id=id.alqstudio.kasbonku" target="_blank" rel="noopener">▶ Google Play</a>
+      </div>
+
+      <div class="app">
+        <div class="top">
+          <div class="ph">🌙</div>
+          <div><h3>Jadwal Sholat, Adzan &amp; Kiblat</h3><span class="chip soon">Segera Hadir</span></div>
+        </div>
+        <p>Jadwal sholat akurat dengan metode resmi Kemenag RI, pengingat adzan, dan arah kiblat — dihitung offline langsung di perangkat. Saat ini sedang dalam peninjauan Google Play.</p>
+        <span class="soonbtn">Dalam Peninjauan Google Play</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <div class="kicker">Cara Kami Membuat Aplikasi</div>
+    <h2>Prinsip ALQ Studio</h2>
+    <p class="sub">Tiga hal yang selalu kami jaga di setiap aplikasi.</p>
+    <div class="vgrid">
+      <div class="val"><div class="ic">🪶</div><h3>Ringan &amp; Cepat</h3><p>Ukuran aplikasi kecil, membuka sekejap, dan tetap nyaman di HP kelas pemula sekalipun.</p></div>
+      <div class="val"><div class="ic">🔒</div><h3>Privasi Terjaga</h3><p>Data utama tersimpan di perangkat pengguna. Tidak ada akun wajib, tidak ada data yang dijual.</p></div>
+      <div class="val"><div class="ic">🤲</div><h3>Jujur &amp; Tanpa Ribet</h3><p>Tanpa watermark diam-diam, tanpa batas tersembunyi. Yang kami janjikan di halaman unduhan adalah yang pengguna dapatkan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tentang" class="about">
+  <div class="wrap">
+    <div class="kicker">Tentang</div>
+    <h2>ALQ Studio</h2>
+    <p><b>ALQ Studio</b> adalah pengembang aplikasi independen dari <b>Metro, Lampung, Indonesia</b>. Kami percaya teknologi yang baik tidak harus rumit — ia cukup hadir tepat saat dibutuhkan, bekerja dengan cepat, lalu tidak mengganggu. Aplikasi kami didukung iklan seperlunya agar tetap gratis untuk semua orang.</p>
+  </div>
+</section>
+
+<footer id="kontak">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>ALQ Studio</h4>
+        <p>Pengembang aplikasi Android independen.<br>Metro, Lampung, Indonesia.</p>
+        <p style="margin-top:10px">Email: <a href="mailto:alqappsmetro@gmail.com" style="display:inline;color:var(--amber2)">alqappsmetro@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Aplikasi</h4>
+        <a href="https://play.google.com/store/apps/details?id=id.alqstudio.catatanbayi" target="_blank" rel="noopener">Catatan Bayi</a>
+        <a href="https://play.google.com/store/apps/details?id=id.alqstudio.scanpdf" target="_blank" rel="noopener">Scan PDF Tanpa Watermark</a>
+        <a href="https://play.google.com/store/apps/details?id=id.buktikerja.app" target="_blank" rel="noopener">BuktiKerja</a>
+        <a href="https://play.google.com/store/apps/details?id=id.alqstudio.kasbonku" target="_blank" rel="noopener">CatatBon</a>
+      </div>
+      <div>
+        <h4>Kebijakan Privasi</h4>
+        <a href="https://alqappsmetro.github.io/catatanbayi-privacy/">Catatan Bayi</a>
+        <a href="https://alqappsmetro.github.io/scanpdf-privacy/">Scan PDF</a>
+        <a href="https://alqappsmetro.github.io/buktikerja-privacy/">BuktiKerja</a>
+        <a href="https://alqappsmetro.github.io/catatbon-privacy/">CatatBon</a>
+        <a href="https://alqappsmetro.github.io/jadwalsholat-privacy/">Jadwal Sholat</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 ALQ Studio · <a href="https://play.google.com/store/apps/dev?id=9023446037560777549" target="_blank" rel="noopener" style="display:inline">ALQ Studio di Google Play</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
